@@ -1,5 +1,9 @@
 # TouchAssist
 
+**English** · [Deutsch](README.de.md)
+
+![TouchAssist](docs/images/banner.svg)
+
 A patched `fingerprint_grow` component for [ESPHome](https://esphome.io/), plus a full
 working project on top of it: a fingerprint-scanner doorbell/entry system on an
 ESP32-S3 that talks to Home Assistant over MQTT and unlocks a door strike on a
@@ -12,6 +16,14 @@ verified match — inspired by [tinytouch](https://github.com/ZimengXiong/tinyTo
   button-based "wizard" UI (works from Home Assistant *or* a plain browser)
 - [`home-assistant/`](home-assistant/) — the HA-side automations, dashboard, and helpers
   that turn the MQTT events into an actual door-unlock system with a management UI
+
+## How it works
+
+![Fingerprint sensor → ESP32-S3 → MQTT → HA automation → door strike](docs/images/how-it-works.svg)
+
+<img src="docs/images/dashboard.svg" alt="Dashboard view: sensor status, per-finger name, unlock toggle, enroll button and logbook" width="440">
+
+*Illustration – the bundled dashboard view with example values.*
 
 ## Why this fork exists
 
@@ -88,7 +100,7 @@ hardware. It pulls this repo in automatically via `external_components:`.
    and [`home-assistant/automation-logbuch-ohne-treffer.yaml`](home-assistant/automation-logbuch-ohne-treffer.yaml)
    (paste into an automation's YAML editor, or via the config API). **Replace
    `REPLACE_WITH_YOUR_SECRET`** with the exact value you put in `secrets.yaml`, and
-   swap `lock.haustueroeffner` / `script.danny_mobile_push_rich` for your own entities.
+   swap `lock.haustueroeffner` and the push script used in the automation for your own entities.
 3. Add [`home-assistant/dashboard-schliesssystem.yaml`](home-assistant/dashboard-schliesssystem.yaml)
    as a new dashboard view (paste into a view's YAML editor) — gives you per-finger
    enrollment buttons, name/enable toggles, sensor status, and an access-attempt Logbook,
@@ -123,6 +135,16 @@ your MQTT broker's credentials for *this* device specifically. For that, add MQT
 and broker-side publish ACLs restricting the `esp_home/fingerprint/#` topic tree to only
 this device's own MQTT login — that has to happen on the broker itself, outside what this
 repo can configure.
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| Sensor never becomes ready after boot | Check wiring and 3.3 V supply; this fork retries the handshake every ~500 ms – look for `fingerprint_grow` lines in the ESPHome log. |
+| Match logged but door doesn't open | The unlock action ships with `enabled: false` – enable it once you trust the setup. |
+| Logbook: *"verdächtiger Freischalt-Versuch abgelehnt"* (suspicious attempt rejected) | Secret or timestamp check failed: `fingerprint_unlock_secret` in `secrets.yaml` and `REPLACE_WITH_YOUR_SECRET` in the automation must be identical, and the ESP32 clock must be SNTP-synced (`time:` in the device config). |
+| Logbook: *"Erkennungssicherheit zu niedrig"* (confidence too low) | Re-enroll the finger, keep the sensor clean, place the finger flat. |
+| Logbook: *"für die Türöffnung deaktiviert"* (disabled for unlocking) | Turn on that finger's *Schließt auf* toggle. |
 
 ## License
 

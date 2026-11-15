@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 220" width="1700" height="220" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5f6b7a"/></marker></defs>
+<rect width="1700" height="220" rx="18" fill="#f6f8fa" stroke="#d0d7de"/>
+<text x="850.0" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2328">How an unlock works</text>
+<rect x="40" y="70" width="220" height="110" rx="14" fill="#fff" stroke="#5e35b1" stroke-width="2.5"/>
+<rect x="40" y="70" width="220" height="8" rx="4" fill="#5e35b1"/>
+<text x="150.0" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2328">Fingerprint sensor</text>
+<text x="150.0" y="144" text-anchor="middle" font-size="13.5" fill="#57606a">ZW101 / R503-style</text>
+<text x="150.0" y="162" text-anchor="middle" font-size="13.5" fill="#57606a">Grow protocol</text>
+<line x1="266" y1="125.0" x2="384" y2="125.0" stroke="#5f6b7a" stroke-width="2.2" marker-end="url(#a)"/>
+<text x="325.0" y="113.0" text-anchor="middle" font-size="12.5" fill="#57606a">UART</text>
+<rect x="390" y="70" width="220" height="110" rx="14" fill="#fff" stroke="#546e7a" stroke-width="2.5"/>
+<rect x="390" y="70" width="220" height="8" rx="4" fill="#546e7a"/>
+<text x="500.0" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2328">ESP32-S3</text>
+<text x="500.0" y="144" text-anchor="middle" font-size="13.5" fill="#57606a">patched</text>
+<text x="500.0" y="162" text-anchor="middle" font-size="13.5" fill="#57606a">fingerprint_grow</text>
+<line x1="616" y1="125.0" x2="734" y2="125.0" stroke="#5f6b7a" stroke-width="2.2" marker-end="url(#a)"/>
+<text x="675.0" y="113.0" text-anchor="middle" font-size="12.5" fill="#57606a">publish</text>
+<rect x="740" y="70" width="220" height="110" rx="14" fill="#fff" stroke="#7e57c2" stroke-width="2.5"/>
+<rect x="740" y="70" width="220" height="8" rx="4" fill="#7e57c2"/>
+<text x="850.0" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2328">MQTT</text>
+<text x="850.0" y="144" text-anchor="middle" font-size="13.5" fill="#57606a">finger_matched</text>
+<text x="850.0" y="162" text-anchor="middle" font-size="13.5" fill="#57606a">secret · ts · id</text>
+<line x1="966" y1="125.0" x2="1084" y2="125.0" stroke="#5f6b7a" stroke-width="2.2" marker-end="url(#a)"/>
+<text x="1025.0" y="113.0" text-anchor="middle" font-size="12.5" fill="#57606a">trigger</text>
+<rect x="1090" y="70" width="220" height="110" rx="14" fill="#fff" stroke="#03a9f4" stroke-width="2.5"/>
+<rect x="1090" y="70" width="220" height="8" rx="4" fill="#03a9f4"/>
+<text x="1200.0" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2328">HA automation</text>
+<text x="1200.0" y="144" text-anchor="middle" font-size="13.5" fill="#57606a">secret ✓ ±2 s ✓</text>
+<text x="1200.0" y="162" text-anchor="middle" font-size="13.5" fill="#57606a">finger enabled ✓</text>
+<line x1="1316" y1="125.0" x2="1434" y2="125.0" stroke="#5f6b7a" stroke-width="2.2" marker-end="url(#a)"/>
+<text x="1375.0" y="113.0" text-anchor="middle" font-size="12.5" fill="#57606a">all checks ok</text>
+<rect x="1440" y="70" width="220" height="110" rx="14" fill="#fff" stroke="#43a047" stroke-width="2.5"/>
+<rect x="1440" y="70" width="220" height="8" rx="4" fill="#43a047"/>
+<text x="1550.0" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#1f2328">Door strike</text>
+<text x="1550.0" y="144" text-anchor="middle" font-size="13.5" fill="#57606a">lock.unlock</text>
+<text x="1550.0" y="162" text-anchor="middle" font-size="13.5" fill="#57606a">+ logbook</text>
+</svg>
